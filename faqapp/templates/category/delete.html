@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}Delete Category: {{ category.name }}{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <p>Please note that deleting {{ category.name }} category from the database will also delete all of its subcategories.<b>This cannot be undone.</b></p>
+    <p>Existing notes can either be deleted or moved up to the parent category <b>{{ parent.name }}</b>.</p>
+    <hr>
+    <form method="post">
+        <fieldset>
+            <legend>Existing notes in category {{ category.name }}:</legend>
+            <div>
+                <input type="radio" name="delete" id="delete_existing" value="delete" checked>
+                <label for="delete_existing">Delete existing notes.</label>
+            </div>
+            <div>
+                <input type="radio" name="delete" id="keep_existing" value="keep">
+                <label for="keep_existing">Keep existing notes.</label>
+            </div>
+        </fieldset>
+        <input class="danger" type="submit" value="Delete" onclick="return confirm('Are you sure you\'d like to delete this category?');">
+    </form>
+{% endblock %}

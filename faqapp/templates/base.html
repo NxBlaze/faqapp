@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %} - F.A.Q. App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><img src="{{ url_for('static', filename='img/logo.png') }}" alt="faqapp logo"></li>
+            {% if g.user %}
+                <li><a href="{{ url_for('faq.index') }}">Home</a></li>
+                {% if g.user and g.user.permission_level > 1 %} 
+                    <li><a href="{{ url_for('faq.add_note') }}">New Note</a></li>
+                {% endif %}
+                {% if g.user.permission_level > 2 %}
+                    <li><a href="{{ url_for('faq.manage_categories') }}">Manage Categories</a></li>
+                {% endif %}
+                {% if g.user.permission_level == 4 %}
+                    <li><a href="{{ url_for('users.manage_users') }}">Manage Users</a></li>
+                {% endif %}
+                <div class="alignright">
+                    <li style="color: #81A1C1;"><span>{{ g.user.name }}</span></li>
+                    <li><a href="{{ url_for('auth.logout') }}">Log Out</a>
+                </div>
+            {% else %}
+                <li><a href="{{ url_for('auth.register') }}">Register</a>
+                <li><a href="{{ url_for('auth.login') }}">Log In</a>
+            {% endif %}
+        </ul>
+    </nav>
+    <section class="content">
+        <header>
+            {% block header %}{% endblock %}
+        </header>
+        {% for message in get_flashed_messages() %}
+            <div class="flash">{{ message }}</div>
+        {% endfor %}
+        {% block content %} {% endblock %}
+    </section>
+</body>
+</html>

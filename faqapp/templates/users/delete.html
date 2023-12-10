@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}Delete User "{{ user.name }}"{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <p>
+        Notes authored by user "{{ user.name }}" can be deleted as well.<br>
+        If you choose to keep them, authorship will be reassigned to admin user "{{ admin.name }}".
+    </p>
+    <form method="post">
+        <fieldset>
+            <legend>Existing notes by user {{ user.name }}:</legend>
+            <div>
+                <input type="radio" name="delete" id="delete_existing" value="delete" checked>
+                <label for="delete_existing">Delete existing notes.</label>
+            </div>
+            <div>
+                <input type="radio" name="delete" id="keep_existing" value="keep">
+                <label for="keep_existing">Keep existing notes.</label>
+            </div>
+        </fieldset>
+        <input class="danger" type="submit" value="Delete" onclick="return confirm('Are you sure you\'d like to delete this user?');">
+    </form>
+{% endblock %}

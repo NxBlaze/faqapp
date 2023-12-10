@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+<!-- Macro for recursively displaying category tree -->
+{% macro render_categories(categories) %}
+    <ul>
+        {% for category in categories %}
+            <li>
+                <a href="{{ url_for('faq.notes_by_category', id=category.id) }}">{{ category.name }}</a>
+                {% if category.subcategories %}
+                    {{ render_categories(category.subcategories) }}
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% endmacro %}
+
+{% block header %}
+    <h1>{% block title %}F. A. Q.{% endblock %}</h1>
+    
+{% endblock %}
+
+{% block content %}
+    <main>
+        <!-- Load Categories -->
+        <div class="categories">
+            <h2>Categories:</h2>
+            <a href="{{ url_for('faq.index') }}">All Categories</a>
+            {{ render_categories(categories) }}
+        </div>
+
+        <!-- Load FAQ notes -->
+        <div class="notes">
+            <h2>Notes:</h2>
+            <hr>
+            {% for note in faqs %}
+                <article class="note">
+                    <header>
+                        <div>
+                            <h3>{{ note.title }}</h3>
+                            <div class="about">by {{ note.author.name }}, {{ note.create_date.strftime("%d-%m-%Y %H:%M:%S") }}</div>
+                            <div class="about">Category: {{ note.category_name.name }}</div>
+                        </div>
+                        {% if g.user.id == note.author_id or g.user.permission_level > 2 %}
+                            <a href="{{ url_for('faq.update_note', id=note.id) }}" class="action alignright">Edit</a>
+                        {% endif%}
+                    </header>
+                    <p class="textbody">{{ note.content }}</p>
+                </article>
+                {% if not loop.last %}
+                    <hr>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </main>
+{% endblock %}

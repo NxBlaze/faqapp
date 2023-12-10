@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}User Management{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <table>
+        <tr>
+            <th>Username</th>
+            <th>Perm. Level</th>
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>
+        </tr>
+        {% for user in users %}
+            <tr>
+                <td>
+                    {{ user.name }}
+                </td>
+                <td class="perm_level">
+                    {{ user.permission_level }}
+                </td>
+                <td class="edit">
+                    <a href="{{ url_for('users.edit_user', id=user.id) }}">Edit</a>
+                </td>
+                <td class="delete">
+                    {% if user != g.user %}
+                        <a href="{{ url_for('users.delete_user', id=user.id) }}">Delete</a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

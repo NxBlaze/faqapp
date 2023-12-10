@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+<!-- Macro for loading list of categories to select from -->
+{% macro load_categories(categories, prefix="") %}
+    {% for category in categories %}
+        <option value="{{ category.id }}">
+            {{ "&#x251c;"|safe }}{{ prefix|safe }}{{ category.name }}
+        </option>
+        {% if category.subcategories %}
+            {{ load_categories(category.subcategories, prefix + "&#x2500;"|safe)}}
+        {% endif %}
+    {% endfor %}
+{% endmacro %}
+
+{% block header %}
+    <h1>{% block title %}New Note{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <form method="post">
+        <label for="title">Title</label>
+        <input name="title" id="title" value="{{ request.form['title'] }}" required>
+        <label for="category">Category</label>
+        <select name="cat_selection" id="cat_selection" required>
+            <option disabled selected>Categories:</option>
+            {{ load_categories(categories) }}
+        </select>
+        <label for="note_content">Content</label>
+        <textarea name="note_content" id="note_content">{{ request.form['note_content'] }}</textarea>
+        <input type="submit" value="Save">
+    </form>
+{% endblock %}

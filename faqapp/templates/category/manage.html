@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}Category Management{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <div class="add_category">
+        <a href="{{ url_for('faq.add_category') }}">Add new category</a>
+        <hr>
+    </div>
+    <table>
+        {% for category in categories %}
+        <tr>
+            <td>
+                {% for n in range(category.level) %}
+                    &#x2500;
+                {% endfor %}
+                {{ category.name }}
+            </td>
+            <td class="edit">
+                <a href="{{ url_for('faq.edit_category', id=category.id) }}">Rename</a>
+            </td>
+            <td class="delete">
+                {% if category.id > 1 %}
+                    <a href="{{ url_for('faq.delete_category', id=category.id) }}">Delete</a>
+                {% endif %}
+            </td>
+        </tr>
+    {% endfor %}
+    </table>
+{% endblock %}

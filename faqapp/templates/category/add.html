@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+<!-- Macro for loading list of categories to select from -->
+{% macro load_categories(categories, prefix="") %}
+    {% for category in categories %}
+        <option value="{{ category.id }}">
+            {{ "&#x251c;"|safe }}{{ prefix|safe }}{{ category.name }}
+        </option>
+        {% if category.subcategories %}
+            {{ load_categories(category.subcategories, prefix + "&#x2500;"|safe)}}
+        {% endif %}
+    {% endfor %}
+{% endmacro %}
+
+{% block header %}
+    <h1>{% block title %}New Category{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <form method="post">
+        <label for="name">Name</label>
+        <input name="name" id="name" value="{{ request.form['name'] }}" required>
+        <label for="category">Parent Category</label>
+        <select name="cat_selection" id="cat_selection" required>
+            <option disabled>Parent Category:</option>
+            <option selected value="0">&#x251c;None (Create new top level category)</option>
+            {{ load_categories(categories) }}
+        </select>
+        <input type="submit" value="Save">
+    </form>
+{% endblock %}

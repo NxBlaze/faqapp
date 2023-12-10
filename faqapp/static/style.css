@@ -1,0 +1,226 @@
+html {
+    font-family: sans-serif;
+    background: #2E3440;
+    padding: 1rem;
+}
+body {
+    max-width: 1360px;
+    margin: 0 auto;
+    background: #3B4252;
+}
+hr {
+    border: none;
+    border-top: 1px solid #4C566A;
+}
+h1, h2, h3, label {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 1.7rem;
+    font-weight: 400;
+    color: #fff;
+    margin: 1rem 0;
+}
+h2 {
+    font-size: 1.5rem;
+}
+h3 {
+    font-size: 1.3rem;
+}
+a {
+    color: #D8DEE9;
+}
+a:hover {
+    color: #81A1C1
+}
+nav {
+    background: #2E3440;
+    display: flex;
+    align-items: center;
+    padding: 0 0.5rem 10px 0.5rem;
+    height: 50px;
+}
+nav ul  {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 50px;
+}
+nav ul li {
+    padding: 0;
+}
+nav ul li a, nav ul li span {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 0.5rem;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    text-decoration: none;
+    font-size: 1.5rem;
+}
+nav ul li a:hover {
+    background-color: #4C566A;
+    color:#81A1C1;
+}
+header .action {
+    font-size: 1.2rem;
+}
+.content {
+    padding: 0 1rem 1rem;
+    color: #D8DEE9;
+}
+header {
+    border-bottom: 1px solid #4C566A;
+    display: flex;
+    align-items: flex-end;
+}
+header h1 {
+    flex: auto;
+    margin: 1rem 0 0.5rem 1rem;
+}
+main {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+main .categories {
+    width: 20%;
+}
+main .categories a {
+    display: block;
+    padding-bottom: 3px;
+}
+main .categories ul {
+    padding: 0 0 0 5px;
+    margin-top: 0;
+    list-style: none;
+}
+main .categories > ul > li {
+    padding-bottom: 3px;
+}
+main .categories ul ul {
+    padding-inline-start: 10px;
+}
+main .notes {
+    width: 80%;
+}
+.note {
+    width: 100%;
+    padding: 10px;
+    color:#D8DEE9;
+}
+.note header {
+    display: flex;
+    padding-bottom: 1rem;
+    border: none;
+}
+.note h3 {
+    margin: 0;
+}
+.note .alignright {
+    margin-top: 30px;
+    margin-right: 10px;
+}
+.note .about {
+    color:#81A1C1;
+    font-size: 0.85rem;
+    font-style: italic;
+}
+.note .textbody {
+    padding: 0 30px 0 8px;
+    white-space: pre-wrap;
+}
+.add_category {
+    margin: 0.5rem 0 0.5rem 0;
+}
+.add_category > a {
+    padding-left: 1rem;
+    color: #81A1C1;
+    font-size: 1.2rem;
+}
+table {
+    margin: 1rem 0 0 2rem;
+    font-size: 1.1rem;
+    border-collapse: collapse;
+}
+table tr {
+    border-bottom: 1px solid #4C566A;
+}
+table tr td:first-child {
+    min-width: 150px;
+}
+table td.perm_level {
+    text-align: center;
+}
+table td.edit a  {
+    padding-left: 5px;
+}
+table td.delete a {
+    color:#BF616A;
+    padding-left: 5px;
+}
+table td.delete a:hover {
+    color:#b63b47;
+}
+form {
+    margin: 1rem 0;
+    display: flex;
+    flex-direction: column;
+}
+.flash {
+    background: #BF616A;
+    border: 1px solid #b63b47;
+    color: #2E3440;
+    margin: 1rem 0;
+    padding: 1rem;
+}
+
+.content:last-child {
+    margin-bottom: 0;
+}
+
+.content input, .content textarea, .content select {
+    background-color:#2E3440;
+    color:#D8DEE9;
+    border: none;
+    border-radius: 5px;
+    min-height: 2rem;
+    margin-bottom: 1em;
+}
+.content input, .content select {
+    font-size: 1.1rem;
+}
+.content textarea {
+    font-size: 1rem;
+    min-height: 12rem;
+    resize: vertical;
+}
+.content fieldset {
+    margin-bottom: 1rem;
+}
+.content fieldset label {
+    position: relative;
+    bottom: 5px
+}
+input[type=submit] {
+    align-self: start;
+    background-color: #81A1C1;
+    color: #2E3440;
+    font-weight: bold;
+    min-width: 10rem;
+}
+input[type=submit]:hover {
+    cursor: pointer;
+    background-color: #5E81AC;
+}
+input.danger {
+    color:#D8DEE9;
+    background-color: #BF616A;
+}
+input.danger:hover {
+    background-color: #b63b47;
+}
+.alignright {
+    display: flex;
+    margin-left: auto;
+}
